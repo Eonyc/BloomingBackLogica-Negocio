@@ -19,7 +19,9 @@ import {
 } from '@loopback/rest';
 import {Categoria} from '../models';
 import {CategoriaRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate("admin")
 export class CategoriaController {
   constructor(
     @repository(CategoriaRepository)
@@ -57,7 +59,7 @@ export class CategoriaController {
   ): Promise<Count> {
     return this.categoriaRepository.count(where);
   }
-
+  @authenticate.skip()
   @get('/categorias')
   @response(200, {
     description: 'Array of Categoria model instances',
