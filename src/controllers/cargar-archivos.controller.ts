@@ -39,7 +39,7 @@ export class CargarArchivosController {
             },
           },
         },
-        description: 'Función de carga de la imagen de un producto.',
+        description: 'Cargar de la imagen de un producto.',
       },
     },
   })
