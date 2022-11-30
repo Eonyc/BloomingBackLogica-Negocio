@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -20,6 +21,7 @@ import {
 import {Marca} from '../models';
 import {MarcaRepository} from '../repositories';
 
+@authenticate("admin")
 export class MarcaController {
   constructor(
     @repository(MarcaRepository)
@@ -58,6 +60,7 @@ export class MarcaController {
     return this.marcaRepository.count(where);
   }
 
+  @authenticate.skip()
   @get('/marcas')
   @response(200, {
     description: 'Array of Marca model instances',
@@ -95,6 +98,7 @@ export class MarcaController {
     return this.marcaRepository.updateAll(marca, where);
   }
 
+  @authenticate.skip()
   @get('/marcas/{id}')
   @response(200, {
     description: 'Marca model instance',
